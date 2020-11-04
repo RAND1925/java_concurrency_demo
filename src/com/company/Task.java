@@ -8,12 +8,6 @@ public class Task implements Runnable {
     public Task(String arg) {
         this.arg = arg;
     }
-    public Task() {
-        this("noname");
-    }
-    public void setArg(String arg) {
-        this.arg = arg;
-    }
 
     @Override
     public void run()  {
