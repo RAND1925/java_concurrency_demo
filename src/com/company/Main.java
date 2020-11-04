@@ -21,10 +21,14 @@ public class Main {
             threads[i] = thread;
             thread.start();
             // thread.join(); // not like this caz it may
+            if (i == 4) { // maybe thread 4 costs so much time
+                thread.interrupt();
+            }
         }
         for (Thread thread: threads) {
-            thread.join();
+            thread.join(1000);
         }
+
     }
 
 
