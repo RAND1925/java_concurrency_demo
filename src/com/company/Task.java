@@ -3,34 +3,30 @@ package com.company;
 import java.util.concurrent.TimeUnit;
 import com.company.util.Util;
 public class Task implements Runnable {
-    private String arg;
+    private final Counter counter;
 
-    public Task(String arg) {
-        this.arg = arg;
-    }
-    public Task() {
-        this("noname");
-    }
-    public void setArg(String arg) {
-        this.arg = arg;
+    public Task(Counter counter) {
+        this.counter = counter;
     }
 
-    @Override
-    public void run()  {
-        long begin =  Util.log("begin", arg);
-        // Do something during 1 sec
-        try {
-            Thread.sleep(1000); // cost 1 second
-            // the same as TimeUnit.MILLISECONDS.sleep(1000);
+    public void synchronized_method() {
+        synchronized(this.counter) {
+            long begin = Util.log("begin", String.valueOf(counter.value()));
+            counter.increment();
+            long end = Util.log("end  ", String.valueOf(counter.value()));
 
-        } catch (InterruptedException e) {
-            if (Thread.interrupted()) {
-                Util.log( "interrupted", "sth happened");
-                return;
-            }
         }
-        long end = Util.log("end", arg);
-        Util.log("cost", arg, (end - begin));
+    }
+
+    public void method() {
+        long begin = Util.log("begin", String.valueOf(counter.value()));
+        counter.increment();
+        long end = Util.log("end  ", String.valueOf(counter.value()));
+    }
+
+    public void run()  {
+        //method();
+        synchronized_method();
     }
 
 }
