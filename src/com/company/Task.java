@@ -20,9 +20,14 @@ public class Task implements Runnable {
         long begin =  Util.log("begin", arg);
         // Do something during 1 sec
         try {
-            TimeUnit.SECONDS.sleep(1);  // 10
+            Thread.sleep(1000); // cost 1 second
+            // the same as TimeUnit.MILLISECONDS.sleep(1000);
+
         } catch (InterruptedException e) {
-            System.out.println("intrrupt");
+            if (Thread.interrupted()) {
+                Util.log( "interrupted", "sth happened");
+                return;
+            }
         }
         long end = Util.log("end", arg);
         Util.log("cost", arg, (end - begin));
