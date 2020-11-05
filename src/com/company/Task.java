@@ -14,7 +14,7 @@ public class Task implements Runnable {
         long begin =  Util.log("begin", arg);
         // Do something during 1 sec
         try {
-            Thread.sleep(1000); // cost 1 second
+            Thread.sleep(1000); // task 1 second
             // the same as TimeUnit.MILLISECONDS.sleep(1000);
 
         } catch (InterruptedException e) {
