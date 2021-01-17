@@ -1,4 +1,4 @@
-package com.company;
+package com.company.basic;
 
 import java.util.concurrent.TimeUnit;
 import com.company.util.Util;
@@ -10,7 +10,7 @@ public class Task implements Runnable {
     }
 
     @Override
-    public void run()  {
+    public void run() {
         long begin =  Util.log("begin", arg);
         // Do something during 1 sec
         try {
