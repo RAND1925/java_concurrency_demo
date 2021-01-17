@@ -28,7 +28,7 @@ class RunnerTest {
     }
 
     @Test
-    public void testRunDirectly() {
+    void testRunDirectly() {
         for (int i = 0; i < times; ++i) {
             String si = String.valueOf(i);
             new Task(si).run();
@@ -36,7 +36,7 @@ class RunnerTest {
     }
 
     @Test
-    public void testRunThread() throws InterruptedException {
+    void testRunThread() throws InterruptedException {
         // create *times* threads
         Thread[] threads = new Thread[times];
         for (int i = 0; i < times; ++i) {

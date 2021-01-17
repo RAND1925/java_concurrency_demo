@@ -8,12 +8,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class LockTest {
-
     static class BowLoop implements Runnable {
-        private Friend bower;
-        private Friend bowee;
+        private LockedFriend bower;
+        private LockedFriend bowee;
 
-        public BowLoop(Friend bower, Friend bowee) {
+        public BowLoop(LockedFriend bower, LockedFriend bowee) {
             this.bower = bower;
             this.bowee = bowee;
         }
@@ -32,10 +31,10 @@ public class LockTest {
     void testLock() {
         ExecutorService executor = Executors.newCachedThreadPool();
 
-        final Friend alphonse =
-                new Friend("Alphonse");
-        final Friend gaston =
-                new Friend("Gaston");
+        final LockedFriend alphonse =
+                new LockedFriend("Alphonse");
+        final LockedFriend gaston =
+                new LockedFriend("Gaston");
         executor.submit(new BowLoop(alphonse, gaston));
         executor.submit(new BowLoop(gaston, alphonse));
         try {

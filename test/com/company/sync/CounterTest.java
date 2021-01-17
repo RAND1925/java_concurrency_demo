@@ -2,11 +2,13 @@ package com.company.sync;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CounterTest {
     @Test
-    public void testCounter() {
+    public void testCounter() throws InterruptedException {
         ICounter simpleCounter = new SimpleCounter();
         ICounter atomicCounter = new AtomicCounter();
         ICounter syncMethodCounter = new SyncMethodCounter();
@@ -21,10 +23,12 @@ class CounterTest {
                 }
             }).start();
         }
+        Thread.sleep(1000);
         System.out.println("simple "+simpleCounter.value()); // problems
-        assertEquals(10000,simpleCounter.value());
         System.out.println("atomic "+atomicCounter.value());
         System.out.println("sync M "+syncMethodCounter.value());
         System.out.println("sync S "+syncStatementCounter.value());
+        assertEquals(10000,simpleCounter.value());
+
     }
 }
