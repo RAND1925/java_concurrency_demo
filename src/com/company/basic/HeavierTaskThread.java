@@ -13,16 +13,16 @@ public class HeavierTaskThread extends Thread {
     public void run() {
         long begin = Util.log("begin", arg);
         // Do something during 1 sec
-        try {
-            TimeUnit.MILLISECONDS.sleep(10000000);
-
-        } catch (InterruptedException e) {
-            if (Thread.interrupted()) {
-                System.out.println("interrupted");
-                Util.log( "interrupted", "sth happened");
-                return;
+        while (!Thread.interrupted()) {
+            try {
+                System.out.println("run");
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                break;
             }
         }
+        System.out.println("interrupted");
+
         long end = Util.log("end", arg);
         Util.log("cost", arg, (end - begin));
     }

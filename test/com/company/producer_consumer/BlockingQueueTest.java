@@ -4,8 +4,6 @@ import com.company.producer_consumer.blockingqueue.Consumer;
 import com.company.producer_consumer.blockingqueue.Producer;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.concurrent.*;
 
 class BlockingQueueTest {
